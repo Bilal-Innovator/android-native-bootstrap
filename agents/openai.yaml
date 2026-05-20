@@ -1,0 +1,4 @@
+interface:
+  display_name: "Android Native Bootstrap"
+  short_description: "Deterministic JNI/CMake Android bootstrap"
+  default_prompt: "Use $android-native-bootstrap to create or repair a native Android image-processing project with Android CLI, Gradle, JNI, CMake, and NDK guardrails."
