@@ -45,7 +45,7 @@ android-native-bootstrap/SKILL.md
 android-native-bootstrap/assets/native-android-cmake-template/
 ```
 
-Set the rule to apply when editing Android, Gradle, CMake, JNI, NDK, or C++ image-processing files.
+Set the rule to apply when editing Android, Gradle, CMake, JNI, NDK, or C++ native engine files.
 
 ### Antigravity / Gemini Android CLI Workflow
 
@@ -72,7 +72,7 @@ Minimal adapter text:
 
 ```text
 Use the Android Native Bootstrap protocol from android-native-bootstrap/SKILL.md.
-Prefer the official Android CLI skill/workflows for Android project creation, project description, SDK management, docs lookup, and deployment. Use this custom protocol only when official Android CLI support is insufficient for JNI, CMake, NDK, ABI filters, or reusable native C++ image-processing modules. Reuse existing Gradle/CMake/JNI configs, avoid duplicate bootstrap logic, patch incrementally, avoid unnecessary CLI executions, preserve deterministic Android-compliant builds, and copy JNI/CMake assets from assets/native-android-cmake-template only as a native overlay.
+Prefer the official Android CLI skill/workflows for Android project creation, project description, SDK management, docs lookup, and deployment. Use this custom protocol only when official Android CLI support is insufficient for JNI, CMake, NDK, ABI filters, shared native runtimes, or reusable native C++ core modules. Reuse existing Gradle/CMake/JNI configs, avoid duplicate bootstrap logic, patch incrementally, avoid unnecessary CLI executions, preserve deterministic Android-compliant builds, and copy JNI/CMake assets from assets/native-android-cmake-template only as a native overlay.
 ```
 
 Do not paste the entire skill into every agent rule if the agent can reference files. File references keep token use low and avoid drift.

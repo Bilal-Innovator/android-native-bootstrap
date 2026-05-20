@@ -35,7 +35,7 @@ Official source URLs:
 
 ## Recommended Modern Android Stack
 
-For native image-processing apps with a Kotlin UI:
+For native Android apps with a Kotlin UI and a performance-critical native layer:
 
 - Kotlin
 - AndroidX Core
@@ -46,4 +46,4 @@ For native image-processing apps with a Kotlin UI:
 - CMake through `externalNativeBuild`
 - NDK pinned to the AGP default unless the project needs a specific NDK
 
-Avoid introducing Hilt, Room, CameraX, Media3, OpenCV, Vulkan, RenderScript alternatives, or ML libraries unless the user asks or the image-processing feature requires them.
+Avoid introducing Hilt, Room, CameraX, Media3, OpenCV, Vulkan, RenderScript alternatives, ML libraries, or domain-specific frameworks unless the user asks or the native feature requires them.

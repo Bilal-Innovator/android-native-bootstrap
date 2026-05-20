@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.nativeimage"
+    namespace = "com.example.nativeengine"
     compileSdk = 36
     ndkVersion = "28.2.13676358"
 
     defaultConfig {
-        applicationId = "com.example.nativeimage"
+        applicationId = "com.example.nativeengine"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

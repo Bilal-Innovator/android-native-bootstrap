@@ -20,7 +20,7 @@ Use Android CLI as the first source of Android agent automation:
 Precedence rule:
 
 - Prefer the official `android-cli` skill/workflow for normal Android project bootstrap, SDK management, docs lookup, template generation, describing projects, and deployment.
-- Use `android-native-bootstrap` only as an extension for JNI, CMake, NDK, ABI, and native C++ image-processing concerns that Android CLI does not fully cover.
+- Use `android-native-bootstrap` only as an extension for JNI, CMake, NDK, ABI, and native C++ engine concerns that Android CLI does not fully cover.
 - Reuse Android CLI output and existing Gradle/CMake/JNI files. Avoid duplicate bootstrap logic.
 - Run CLI commands intentionally. Do not repeat discovery commands unless project files or installed tools changed.
 

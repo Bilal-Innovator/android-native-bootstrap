@@ -1,12 +1,12 @@
 # Android Native Bootstrap Skill
 
-A reusable AI-agent skill for bootstrapping and maintaining native Android projects that combine Kotlin/Java, JNI, CMake, NDK, ABI configuration, and an isolated C++ image-processing core.
+A reusable AI-agent skill for bootstrapping and maintaining native Android projects that combine Kotlin/Java, JNI, CMake, NDK, ABI configuration, and an isolated native C++ core module.
 
 The skill is designed to reduce token waste and build drift when AI coding agents create or repair Android native projects. It tells agents to use the official Android CLI workflow first, reuse existing Gradle/CMake/JNI configuration, and apply this skill only where official tooling does not cover advanced native C++ setup.
 
 ## Project Overview
 
-Android Native Bootstrap is a portable skill package for AI coding agents. It provides one concise instruction file, optional reference notes, and reusable Gradle/CMake/JNI template assets so agents can create or repair native Android project structure without repeatedly inventing setup code.
+Android Native Bootstrap is a portable skill package for AI coding agents. It provides one concise instruction file, optional reference notes, and reusable Gradle/CMake/JNI template assets so agents can create or repair native Android project structure without repeatedly inventing setup code for high-performance native engines, shared native runtimes, cross-platform C++ cores, or performance-critical native layers.
 
 ## Problem
 
@@ -26,7 +26,7 @@ This repository turns those repeated decisions into a deterministic protocol plu
 
 - Prefer official Android CLI workflows over hand-written setup.
 - Reuse existing Gradle, CMake, and JNI files when a project already exists.
-- Keep native C++ image-processing code isolated and reusable.
+- Keep native C++ core modules isolated and reusable.
 - Avoid duplicate bootstrap logic across AI tools.
 - Minimize token usage through templates, references, and incremental patches.
 - Keep builds deterministic, Android-compliant, and easy to validate.
@@ -61,12 +61,12 @@ android-native-bootstrap/
         build.gradle.kts
         src/main/
           AndroidManifest.xml
-          java/com/example/nativeimage/NativeImageProcessor.kt
+          java/com/example/nativeengine/NativeEngine.kt
           cpp/
             CMakeLists.txt
             native-lib.cpp
-            core/image_processor.h
-            core/image_processor.cpp
+            core/native_engine.h
+            core/native_engine.cpp
   references/
     agent-adapters.md
     android-cli-notes.md
@@ -108,7 +108,7 @@ android-native-bootstrap/SKILL.md
 android-native-bootstrap/assets/native-android-cmake-template/
 ```
 
-Apply the rule when editing Android, Gradle, CMake, JNI, NDK, or native C++ image-processing files.
+Apply the rule when editing Android, Gradle, CMake, JNI, NDK, or native C++ engine files.
 
 ### Claude Code
 
@@ -170,7 +170,7 @@ android docs search "Android NDK CMake externalNativeBuild"
 android sdk list "ndk|cmake|platforms|build-tools"
 ```
 
-Use this custom skill only when Android CLI support is insufficient for JNI, CMake, NDK, ABI filters, or reusable native C++ modules.
+Use this custom skill only when Android CLI support is insufficient for JNI, CMake, NDK, ABI filters, shared native runtimes, or reusable native C++ core modules.
 
 ## JNI, CMake, And NDK Guidance
 
@@ -181,14 +181,14 @@ app/src/main/cpp/
   CMakeLists.txt
   native-lib.cpp
   core/
-    image_processor.h
-    image_processor.cpp
+    native_engine.h
+    native_engine.cpp
 ```
 
 Rules:
 
 - Keep JNI code in `native-lib.cpp`.
-- Keep reusable image-processing algorithms in `core/`.
+- Keep reusable C++ engine/runtime logic in `core/`.
 - Do not include `jni.h` in the reusable C++ core.
 - Keep CMake targets deterministic.
 - Pin ABI filters in one Gradle location.
@@ -213,13 +213,13 @@ ndk {
     build.gradle.kts
     src/main/
       AndroidManifest.xml
-      java/<package>/NativeImageProcessor.kt
+      java/<package>/NativeEngine.kt
       cpp/
         CMakeLists.txt
         native-lib.cpp
         core/
-          image_processor.h
-          image_processor.cpp
+          native_engine.h
+          native_engine.cpp
 ```
 
 ## Token Optimization Principles
@@ -250,10 +250,10 @@ Expected behavior:
 4. Patch Gradle `externalNativeBuild` minimally.
 5. Validate with the narrowest Gradle native build task.
 
-### Bootstrap A New Native Image-Processing App
+### Bootstrap A New Native Engine App
 
 ```text
-Use $android-native-bootstrap to create a native Android image-processing project with a reusable C++ core.
+Use $android-native-bootstrap to create a native Android project with a reusable high-performance C++ core module.
 ```
 
 Expected behavior:
@@ -266,7 +266,7 @@ Expected behavior:
 ### Use Latest Android Stack
 
 ```text
-Use $android-native-bootstrap in cutting-edge mode for a new native Android image-processing app.
+Use $android-native-bootstrap in cutting-edge mode for a new native Android app with a performance-critical C++ layer.
 ```
 
 Expected behavior:
@@ -345,7 +345,7 @@ Good contributions include:
 
 - Better Android CLI compatibility notes
 - More robust JNI/CMake templates
-- Additional native image-processing examples
+- Additional native engine examples
 - Agent adapter improvements
 - Build validation scripts
 - Documentation that reduces repeated AI-agent token usage

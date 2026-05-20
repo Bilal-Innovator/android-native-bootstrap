@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "NativeImageApp"
+rootProject.name = "NativeEngineApp"
 include(":app")

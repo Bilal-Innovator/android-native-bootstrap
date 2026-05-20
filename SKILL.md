@@ -1,6 +1,6 @@
 ---
 name: android-native-bootstrap
-description: Deterministic bootstrap and repair protocol for native Android projects that use Kotlin/Java plus a C++ image-processing core through JNI, CMake, NDK, Gradle, and ABI configuration. Use when creating, recreating, repairing, or extending Android projects with native-lib.cpp, CMakeLists.txt, externalNativeBuild, abiFilters, Android CLI for agents, Android NDK, JNI bridges, reusable C++ modules, or token-efficient Android native scaffolding.
+description: Deterministic bootstrap and repair protocol for native Android projects that use Kotlin/Java plus a native C++ core module through JNI, CMake, NDK, Gradle, and ABI configuration. Use when creating, recreating, repairing, or extending Android projects with native-lib.cpp, CMakeLists.txt, externalNativeBuild, abiFilters, Android CLI for agents, Android NDK, JNI bridges, high-performance native engines, shared native runtimes, reusable C++ modules, or token-efficient Android native scaffolding.
 ---
 
 # Android Native Bootstrap
@@ -9,7 +9,7 @@ description: Deterministic bootstrap and repair protocol for native Android proj
 
 Use the official Android CLI skill/workflows first, copy bundled templates only for native C++ gaps, and patch existing files third. Do not hand-generate Android, Gradle, NDK, CMake, or JNI boilerplate from memory unless Android CLI support and the existing project structure are insufficient.
 
-This skill is an extension layer, not a replacement for the official Android CLI skill. Let Android CLI handle project discovery, official template creation, SDK package management, documentation lookup, deployment, and ordinary Android-compliant build setup. Use this custom skill only for advanced native C++ requirements such as JNI boundaries, reusable C++ core isolation, CMake target layout, ABI filters, NDK pinning, and image-processing module templates.
+This skill is an extension layer, not a replacement for the official Android CLI skill. Let Android CLI handle project discovery, official template creation, SDK package management, documentation lookup, deployment, and ordinary Android-compliant build setup. Use this custom skill only for advanced native C++ requirements such as JNI boundaries, reusable C++ core isolation, CMake target layout, ABI filters, NDK pinning, and high-performance native engine templates.
 
 Avoid duplicate bootstrap logic. If Android CLI creates or describes a valid Gradle project, reuse that structure and overlay only the missing native pieces.
 
@@ -27,7 +27,7 @@ Default to build-stable pinned versions. Use cutting-edge Android frameworks, pl
 3. If Android CLI is missing, tell the user the exact missing command and continue with the bundled template only if they want an offline scaffold.
 4. Prefer `android create --dry-run --verbose <template> --output=<dir>` before creating files when the installed CLI supports `--dry-run`; otherwise use `android create -h` and `android create --list`/`android create list` before writing.
 5. Create or repair the Android shell with official Android CLI workflows. Add native/CMake files from `assets/native-android-cmake-template` only when the official template does not provide the required JNI/CMake/NDK structure.
-6. Keep C++ image-processing code in `app/src/main/cpp/core/` and the JNI bridge in `app/src/main/cpp/native-lib.cpp`.
+6. Keep the performance-critical native layer in `app/src/main/cpp/core/` and the JNI bridge in `app/src/main/cpp/native-lib.cpp`.
 7. Validate in small steps: sync/configure, compile native, assemble debug, then run/deploy only if requested.
 
 ## Version Mode
@@ -103,13 +103,13 @@ Use this stable structure unless the existing repository already has a different
     build.gradle.kts
     src/main/
       AndroidManifest.xml
-      java/<package>/NativeImageProcessor.kt
+      java/<package>/NativeEngine.kt
       cpp/
         CMakeLists.txt
         native-lib.cpp
         core/
-          image_processor.h
-          image_processor.cpp
+          native_engine.h
+          native_engine.cpp
 ```
 
 The `app/src/main/cpp/core/` module must be plain C++ with no JNI includes. Only `native-lib.cpp` may include `jni.h`.
@@ -125,9 +125,9 @@ Copy from `assets/native-android-cmake-template/` only when official Android CLI
 - `app/src/main/AndroidManifest.xml`
 - `app/src/main/cpp/CMakeLists.txt`
 - `app/src/main/cpp/native-lib.cpp`
-- `app/src/main/cpp/core/image_processor.h`
-- `app/src/main/cpp/core/image_processor.cpp`
-- `app/src/main/java/com/example/nativeimage/NativeImageProcessor.kt`
+- `app/src/main/cpp/core/native_engine.h`
+- `app/src/main/cpp/core/native_engine.cpp`
+- `app/src/main/java/com/example/nativeengine/NativeEngine.kt`
 - `app/src/main/res/values/strings.xml`
 
 After copying, patch only package names, namespace, app id, SDK versions, ABI list, and function names that are actually required by the user. Prefer reusing existing Gradle, CMake, and JNI configs over replacing them with these templates.
@@ -164,9 +164,9 @@ When adding libraries in cutting-edge mode, prefer platform-managed and BOM-mana
 - Keep JNI methods small: validate inputs, translate arrays/bitmaps/buffers, call the C++ core, translate results.
 - Put real algorithms in `core/` files so they can be unit-tested or reused outside Android.
 - Use deterministic names:
-  - Kotlin/Java facade: `NativeImageProcessor`
+  - Kotlin/Java facade: `NativeEngine`
   - JNI file: `native-lib.cpp`
-  - CMake library target: `native_image_processor`
+  - CMake library target: `native_engine`
 - When renaming packages, update JNI symbol names or use explicit registration. For simple bootstrap projects, generated JNI symbol names are acceptable.
 
 ## Editing Protocol
