@@ -49,7 +49,38 @@ Set the rule to apply when editing Android, Gradle, CMake, JNI, NDK, or C++ nati
 
 ### Antigravity / Gemini Android CLI Workflow
 
-First enable the official Android CLI workflow:
+Do not place the skill directly under:
+
+```text
+<workspace-root>/.antigravity/android-native-bootstrap/
+<workspace-root>/.gemini/android-native-bootstrap/
+```
+
+Antigravity does not discover skills from those paths.
+
+Use one of these supported paths instead:
+
+Workspace-specific:
+
+```text
+<workspace-root>/.agents/skills/android-native-bootstrap/
+```
+
+Global:
+
+```text
+%USERPROFILE%\.gemini\antigravity\skills\android-native-bootstrap\
+```
+
+The final folder must contain:
+
+```text
+SKILL.md
+assets/
+references/
+```
+
+Then enable the official Android CLI workflow:
 
 ```text
 android init
@@ -57,6 +88,18 @@ android skills add android-cli
 ```
 
 Then add this skill as the project-specific native CMake/JNI extension. Use it only after Android CLI has created, inspected, or described the Android project.
+
+For Gemini CLI, skills may not be loaded as Antigravity skills in every setup. Use a project `GEMINI.md` fallback:
+
+```text
+Follow android-native-bootstrap/SKILL.md for Android JNI/CMake/NDK native-engine work. Prefer Android CLI first and use the native template assets only as an overlay.
+```
+
+A ready-made adapter is available at:
+
+```text
+android-native-bootstrap/adapters/GEMINI.md
+```
 
 ### Other AI Coding Agents
 

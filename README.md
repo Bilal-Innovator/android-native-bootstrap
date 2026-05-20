@@ -122,7 +122,23 @@ Tell it to use the official Android CLI workflow first and this skill only as th
 
 ### Antigravity / Gemini Android CLI Workflow
 
-Enable the official Android CLI workflow first:
+Antigravity does not discover skills from a folder placed directly under `.antigravity/` or `.gemini/`.
+
+Use one of these supported skill locations:
+
+Workspace-specific:
+
+```text
+<workspace-root>/.agents/skills/android-native-bootstrap/
+```
+
+Global:
+
+```text
+%USERPROFILE%\.gemini\antigravity\skills\android-native-bootstrap\
+```
+
+Copy the full skill folder to one of those locations. Then enable the official Android CLI workflow:
 
 ```text
 android init
@@ -138,7 +154,9 @@ Then use this skill as the project-specific JNI/CMake/NDK extension.
 | Codex | `%USERPROFILE%\.codex\skills\android-native-bootstrap\` |
 | Cursor | `.cursor/rules/android-native-bootstrap.mdc` plus this folder in the repo |
 | Claude Code | Repo or user-level instruction referencing `SKILL.md` |
-| Antigravity / Gemini | Official `android-cli` skill plus this native extension |
+| Antigravity workspace skill | `<workspace-root>/.agents/skills/android-native-bootstrap/` |
+| Antigravity global skill | `%USERPROFILE%\.gemini\antigravity\skills\android-native-bootstrap\` |
+| Gemini CLI context fallback | `GEMINI.md` that references `android-native-bootstrap/SKILL.md` |
 | Other agents | Any skill, memory, rule, or instruction system that can reference files |
 
 Keep the entire folder together. `SKILL.md`, `references/`, and `assets/` are one unit.
@@ -277,6 +295,48 @@ Expected behavior:
 4. Avoid preview/canary versions unless explicitly requested.
 
 ## Troubleshooting
+
+### Antigravity Does Not Detect The Skill
+
+Make sure the folder is not installed as:
+
+```text
+<workspace-root>/.antigravity/android-native-bootstrap/
+<workspace-root>/.gemini/android-native-bootstrap/
+```
+
+Those are not Antigravity skill discovery paths.
+
+Use one of these instead:
+
+```text
+<workspace-root>/.agents/skills/android-native-bootstrap/
+%USERPROFILE%\.gemini\antigravity\skills\android-native-bootstrap\
+```
+
+The final path must contain `SKILL.md` directly:
+
+```text
+.../skills/android-native-bootstrap/SKILL.md
+```
+
+Restart Antigravity or start a new agent session after copying the folder. In a prompt, invoke it explicitly:
+
+```text
+Use the android-native-bootstrap skill to add JNI/CMake/NDK support to this project.
+```
+
+For Gemini CLI, create or update a project `GEMINI.md` file and point it at:
+
+```text
+android-native-bootstrap/SKILL.md
+```
+
+You can also copy the ready-made adapter from:
+
+```text
+android-native-bootstrap/adapters/GEMINI.md
+```
 
 ### Android CLI Is Not Installed
 
