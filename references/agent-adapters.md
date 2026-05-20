@@ -6,6 +6,19 @@ Keep one source of truth: this skill folder. For each agent, point its native in
 
 Keep the whole `android-native-bootstrap/` folder together. `SKILL.md`, `references/`, and `assets/` are a single unit.
 
+Before installing this skill for any agent, install Android CLI from:
+
+```text
+https://developer.android.com/tools/agents/android-cli/download
+```
+
+Verify:
+
+```text
+android info
+android skills list
+```
+
 ### Codex
 
 Install target:
@@ -58,18 +71,10 @@ Do not place the skill directly under:
 
 Antigravity does not discover skills from those paths.
 
-Use one of these supported paths instead:
-
-Workspace-specific:
+Use this working Antigravity/Gemini path first:
 
 ```text
-<workspace-root>/.agents/skills/android-native-bootstrap/
-```
-
-Global:
-
-```text
-%USERPROFILE%\.gemini\antigravity\skills\android-native-bootstrap\
+%USERPROFILE%\.gemini\config\skills\android-native-bootstrap\
 ```
 
 The final folder must contain:
@@ -78,6 +83,20 @@ The final folder must contain:
 SKILL.md
 assets/
 references/
+```
+
+If your Antigravity version uses the newer documented locations, these may also work:
+
+Workspace-specific:
+
+```text
+<workspace-root>/.agents/skills/android-native-bootstrap/
+```
+
+Documented global fallback:
+
+```text
+%USERPROFILE%\.gemini\antigravity\skills\android-native-bootstrap\
 ```
 
 Then enable the official Android CLI workflow:

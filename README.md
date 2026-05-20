@@ -75,6 +75,56 @@ android-native-bootstrap/
 
 ## Installation
 
+### Prerequisite: Install Android CLI
+
+Install Android CLI before using this skill. The skill relies on Android CLI for official Android project creation, project inspection, SDK package management, documentation lookup, and Android agent skill integration.
+
+Official download page:
+
+```text
+https://developer.android.com/tools/agents/android-cli/download
+```
+
+Windows:
+
+```powershell
+winget install --id Google.AndroidCLI
+```
+
+Windows alternative:
+
+```cmd
+curl.exe -fsSL https://dl.google.com/android/cli/latest/windows_x86_64/install.cmd -o "%TEMP%\i.cmd" && "%TEMP%\i.cmd"
+```
+
+macOS:
+
+```bash
+brew tap android/tap
+brew install android-cli
+```
+
+Linux:
+
+```bash
+curl -fsSL https://dl.google.com/android/cli/latest/linux_x86_64/install.sh | bash
+```
+
+Verify:
+
+```bash
+android info
+android skills list
+```
+
+If Windows installs Android CLI but `android` is still not found, restart your terminal or agent environment so PATH is refreshed. Winget installs may appear under:
+
+```text
+%LOCALAPPDATA%\Microsoft\WinGet\Packages\Google.AndroidCLI_...\android.exe
+```
+
+Then install this skill for your agent.
+
 ### Codex
 
 Copy the full skill folder into your Codex skills directory:
@@ -124,7 +174,19 @@ Tell it to use the official Android CLI workflow first and this skill only as th
 
 Antigravity does not discover skills from a folder placed directly under `.antigravity/` or `.gemini/`.
 
-Use one of these supported skill locations:
+Use this working Antigravity/Gemini skill location first:
+
+```text
+%USERPROFILE%\.gemini\config\skills\android-native-bootstrap\
+```
+
+Copy the full skill folder there. The final path must contain:
+
+```text
+%USERPROFILE%\.gemini\config\skills\android-native-bootstrap\SKILL.md
+```
+
+If your Antigravity version or workspace configuration uses the newer documented locations, these may also work:
 
 Workspace-specific:
 
@@ -138,7 +200,7 @@ Global:
 %USERPROFILE%\.gemini\antigravity\skills\android-native-bootstrap\
 ```
 
-Copy the full skill folder to one of those locations. Then enable the official Android CLI workflow:
+Then enable the official Android CLI workflow:
 
 ```text
 android init
@@ -154,8 +216,9 @@ Then use this skill as the project-specific JNI/CMake/NDK extension.
 | Codex | `%USERPROFILE%\.codex\skills\android-native-bootstrap\` |
 | Cursor | `.cursor/rules/android-native-bootstrap.mdc` plus this folder in the repo |
 | Claude Code | Repo or user-level instruction referencing `SKILL.md` |
+| Antigravity / Gemini working path | `%USERPROFILE%\.gemini\config\skills\android-native-bootstrap\` |
 | Antigravity workspace skill | `<workspace-root>/.agents/skills/android-native-bootstrap/` |
-| Antigravity global skill | `%USERPROFILE%\.gemini\antigravity\skills\android-native-bootstrap\` |
+| Antigravity documented global fallback | `%USERPROFILE%\.gemini\antigravity\skills\android-native-bootstrap\` |
 | Gemini CLI context fallback | `GEMINI.md` that references `android-native-bootstrap/SKILL.md` |
 | Other agents | Any skill, memory, rule, or instruction system that can reference files |
 
@@ -164,6 +227,12 @@ Keep the entire folder together. `SKILL.md`, `references/`, and `assets/` are on
 ## Android CLI Integration
 
 This skill is intentionally layered on top of the official Android CLI workflow.
+
+Android CLI is a prerequisite. Install it before using this skill:
+
+```text
+https://developer.android.com/tools/agents/android-cli/download
+```
 
 Use Android CLI for:
 
@@ -307,7 +376,13 @@ Make sure the folder is not installed as:
 
 Those are not Antigravity skill discovery paths.
 
-Use one of these instead:
+Use this working path first:
+
+```text
+%USERPROFILE%\.gemini\config\skills\android-native-bootstrap\
+```
+
+If needed, also try the documented workspace/global fallback paths:
 
 ```text
 <workspace-root>/.agents/skills/android-native-bootstrap/
@@ -340,7 +415,13 @@ android-native-bootstrap/adapters/GEMINI.md
 
 ### Android CLI Is Not Installed
 
-Install Android CLI from the official Android documentation. On Windows:
+Install Android CLI from the official Android documentation:
+
+```text
+https://developer.android.com/tools/agents/android-cli/download
+```
+
+On Windows:
 
 ```powershell
 winget install --id Google.AndroidCLI

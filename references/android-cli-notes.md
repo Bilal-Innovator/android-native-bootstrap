@@ -4,6 +4,26 @@ Official page checked: https://developer.android.com/tools/agents/android-cli
 
 Last documented update observed: 2026-05-07 UTC for the overview page; download page observed updated 2026-05-19 UTC.
 
+Android CLI download page: https://developer.android.com/tools/agents/android-cli/download
+
+Android CLI is a prerequisite for this skill's official workflow. Install it before attempting project creation, project description, SDK management, docs lookup, deployment, or Android CLI skill commands.
+
+Recommended install commands from the official download page:
+
+- Windows: `winget install --id Google.AndroidCLI`
+- Windows local installer: `curl.exe -fsSL https://dl.google.com/android/cli/latest/windows_x86_64/install.cmd -o "%TEMP%\i.cmd" && "%TEMP%\i.cmd"`
+- Linux local installer: `curl -fsSL https://dl.google.com/android/cli/latest/linux_x86_64/install.sh | bash`
+- macOS Homebrew: `brew tap android/tap && brew install android-cli`
+
+Verify with:
+
+```bash
+android info
+android skills list
+```
+
+On Windows, if `winget` installs Android CLI but `android` is not found, restart the terminal or agent environment so PATH is refreshed. The binary may be under `%LOCALAPPDATA%\Microsoft\WinGet\Packages\Google.AndroidCLI_...\android.exe`.
+
 Use Android CLI as the first source of Android agent automation:
 
 - `android init` installs the `android-cli` skill for agents.
